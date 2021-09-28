@@ -1,0 +1,55 @@
+---
+title: "p8105_hw1_kw2961"
+output: html_document
+---
+
+```{r message = FALSE}
+library(tidyverse)
+```
+
+## Problem 1
+**Create a data frame comprised of:**  
+
+- **a random sample of size 10 from a standard Normal distribution**
+- **a logical vector indicating whether elements of the sample are greater than 0**
+- **a character vector of length 10**
+- **a factor vector of length 10, with 3 different factor “levels”**
+
+
+
+```{r}
+df = tibble(
+  sample = rnorm(10),
+  vec_logical = sample > 0,
+  vec_char = c('cat', 'dog', 'run', 'fast', 'slow', 'jump', 'beautiful', 'smile', 'big', 'small'),
+  vec_fac = factor(c('noun', 'noun', 'verb', 'adjective', 'adjective', 'verb', 'adjective', 'verb', 'adjective', 'adjective'))
+  )
+```
+
+
+**Try to take the mean of each variable in your dataframe. What works and what doesn’t?**
+```{r collapse = TRUE}
+mean(pull(df, var = sample))
+mean(pull(df, var = vec_logical))
+mean(pull(df, var = vec_char))
+mean(pull(df, var = vec_fac))
+```
+Only the variables 'sample' and 'vec_logical' have mean. The variable 'vec_char' and 'vec_fact' do not.   
+
+**In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?**
+```{r eval = FALSE}
+as.numeric(pull(df, var = sample))
+as.numeric(pull(df, var = vec_logical))
+as.numeric(pull(df, var = vec_char))
+as.numeric(pull(df, var = vec_fac))
+```
+The variables 'sample', 'vec_logical' and 'vec_fac' can be converted to numerics. However, vec_fac does not have a mean because these numerics are the levels of factors and do not have a mathematical meanings. The variables 'sample' and 'vec_logical' can be calculated because they are numbers. 
+
+
+## Problem 2
+```{r}
+
+```
+
+
+## Problem 3
