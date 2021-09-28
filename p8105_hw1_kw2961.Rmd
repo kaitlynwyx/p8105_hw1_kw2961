@@ -48,8 +48,14 @@ The variables 'sample', 'vec_logical' and 'vec_fac' can be converted to numerics
 
 ## Problem 2
 ```{r}
+data("penguins", package = "palmerpenguins")
+```
+This dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns. There are `r nrow(penguins)` penguins in the dataset. These information: `r names(penguins)` are included. The mean flipper length is `r round(mean(pull(penguins, var = flipper_length_mm), na.rm = TRUE), digits = 2)`mm.
 
+```{r message = FALSE}
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + labs(title = 'Flipper Length (mm) vs. Bill Length (mm)', x = 'Bill Length (mm)', y = 'Flipper Length (mm)')
+
+ggsave('Penguins.png')
 ```
 
 
-## Problem 3
